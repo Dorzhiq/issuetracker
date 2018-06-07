@@ -1,0 +1,15 @@
+#macro(mainLayout)
+<html>
+    <head>
+        <title>Issue Tracker by Dorzhi</title>
+    </head>
+    <body>
+        <header>Issue Tracker</header>
+        <main>
+            <div id="content">
+                $bodyContent
+            </div>
+        </main>
+    </body>
+</html>
+#end
