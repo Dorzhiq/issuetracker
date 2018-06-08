@@ -1,8 +1,22 @@
 package com.axmor.issue;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Issue {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer issueId;
+
+    @Column
     private String name;
+
+    @Column
     private String author;
+
+    @Column
     private String status;
 
     public Issue(){}

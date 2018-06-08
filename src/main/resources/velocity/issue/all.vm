@@ -1,9 +1,9 @@
-#parse("/resources/velocity/layout.vm")
+#parse("/velocity/layout.vm")
 #@mainLayout()
-    <h1> ALL ISSUES </h1>
+    <h1>$msg.get("ISSUES_HEADING_ALL")</h1>
     <div>
         #foreach($issue in $issues)
-        <li>$issue.getName() $issue.getAuthor $issue.getStatus</li>
+        <li>$issue.getName() $issue.getAuthor() $issue.getStatus()</li>
         #end
     </div>
 #end
