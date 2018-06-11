@@ -1,9 +1,9 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-    <h1>$msg.get("ISSUES_HEADING_ALL")</h1>
-    <div>
-        #foreach($issue in $issues)
-        <li>$issue.getName() $issue.getAuthor() $issue.getStatus()</li>
-        #end
-    </div>
+<h1>$msg.get("ISSUES_HEADING_ALL")</h1>
+<div>
+    #foreach($issue in $issues)
+        <a href="http://localhost:8080/1/"><li>$issue.getName()</a>  $issue.getAuthor() $issue.getStatus()
+    #end
+</div>
 #end

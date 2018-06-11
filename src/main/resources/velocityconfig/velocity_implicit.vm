@@ -3,3 +3,4 @@
 #* @vtlvariable name="msg" type="com.axmor.util.MessageBundle" *#
 #* @vtlvariable name="issues" type="java.lang.Iterable<com.axmor.issue.Issue>" *#
 #* @vtlvariable name="issue" type="com.axmor.issue.Issue" *#
+#* @vtlvariable name="issueById" type="com.axmor.issue.Issue" *#

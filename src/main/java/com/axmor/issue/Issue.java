@@ -7,8 +7,9 @@ import javax.persistence.*;
 public class Issue {
 
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer issueId;
+    private String issueId;
 
     @Column
     private String name;
@@ -25,6 +26,8 @@ public class Issue {
         this.author = author;
         this.status = status;
     }
+
+    public String getIssueId() { return issueId; }
 
     public String getName() {
         return name;
