@@ -13,7 +13,6 @@ import spark.Response;
 
 import static spark.Spark.get;
 import static spark.Spark.port;
-import static spark.Spark.put;
 
 /**
  * Application entry point
@@ -37,7 +36,7 @@ public class Main {
         get("/", (Request req, Response res) -> "<html><body><h1>Hello, world!</h1></body></html>");
         get(Path.Web.ISSUES, IssueController.fetchAllIssues);
         get(Path.Web.ISSUE_BY_ID, IssueController.fetchIssueById);
-        put(Path.Web.PUT_ISSUE, IssueController.putIssue);
+        //put(Path.Web.PUT_ISSUE, IssueController.putIssue);
 
 
         session.close();

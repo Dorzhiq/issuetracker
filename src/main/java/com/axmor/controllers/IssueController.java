@@ -31,9 +31,9 @@ public class IssueController {
         return ViewUtil.render(request, model, Path.Template.ISSUE_BY_ID);
     };
     // тут пут
-    public static Route putIssue = (Request request, Response response) -> {
-        HashMap<String, Object> model =  new HashMap<>();
-        model.put("putIssueById", issueDao.patchIssue(request.params(":issueId")));//где используется первый аргумент?
-        return ViewUtil.render(request, model, Path.Template.PUT_ISSUE);
-    };
+//    public static Route putIssue = (Request request, Response response) -> {
+////        HashMap<String, Object> model =  new HashMap<>();
+////        model.put("putIssueById", issueDao.patchIssue(request.params(":issueId")));//где используется первый аргумент?
+////        return ViewUtil.render(request, model, Path.Template.PUT_ISSUE);
+////    };
 }

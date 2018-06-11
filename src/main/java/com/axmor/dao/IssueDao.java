@@ -31,12 +31,12 @@ public class IssueDao {
         return result;
     }
     //тут пут
-    public void patchIssue(String id) {
-        Session session = sessionFactory.openSession();
-        Issue issue = session.load(Issue.class, id);
-        session.beginTransaction();
-        session.update(issue);
-        session.getTransaction().commit();
-        session.close();
-    }
+//    public void patchIssue(String id) {
+//        Session session = sessionFactory.openSession();
+//        Issue issue = session.load(Issue.class, id);
+//        session.beginTransaction();
+//        session.update(issue);
+//        session.getTransaction().commit();
+//        session.close();
+//    }
 }
