@@ -4,7 +4,7 @@ public class Path {
     public static class Web {
         public static final String ISSUES = "/issues/";
         public static final String ISSUE_BY_ID = "/:issueId/";
-        //public static final String PUT_ISSUE = "/issue/:issueId";
+        public static final String PUT_ISSUE = "/issue/:issueId?author";
 
         public static String getISSUES() {
             return ISSUES;
