@@ -1,0 +1,27 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+    <h1>Cteate issue</h1>
+    <form id="my-form" onsubmit="processForm(); return false;">
+        <input type="text"  id="name" placeholder="Name" />
+        <input type="text"  id="author" placeholder="Author" />
+        <input type="text"  id="status" placeholder="Status" />
+        <button type="submit">Submit</button>
+    </form>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        function processForm() {
+            $.ajax({
+                url: '/issues/add/',
+                type: 'post',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({name : $('#name').val(), author : $('#author').val(), status : $('#status').val()}),
+                success: function(data, textStatus, jQxhr) {
+                    alert(data);
+                },
+                error: function(jqXhr, textStatus, errorThrown) {
+                    alert("error");
+                }
+            });
+        }
+    </script>
+#end
