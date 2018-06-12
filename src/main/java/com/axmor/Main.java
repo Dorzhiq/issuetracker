@@ -16,18 +16,9 @@ import static spark.Spark.*;
  * Application entry point
  */
 public class Main {
-    public static IssueDao issueDao;
+    public static IssueDao issueDao = new IssueDao();
+    public static SessionFactory sessionFactory = buildSessionFactory(Issue.class);
     public static void main(String[] args) {
-        Issue issue = new Issue("task1", "dorzhi", "created");
-
-        SessionFactory sessionFactory = buildSessionFactory(Issue.class);
-
-        Session session = sessionFactory.openSession();
-
-        session.save(issue);
-
-        issueDao = new IssueDao();
-
         port(8080);
         get("/", (Request req, Response res) -> "<html><body><h1>Hello, world!</h1></body></html>");
         get(Path.Web.ISSUES, IssueController.fetchAllIssues);
@@ -36,10 +27,11 @@ public class Main {
         post(Path.Web.POST_ISSUE, IssueController.postIssue);
         get(Path.Web.CREATE_ISSUE, IssueController.fetchCreate);
     }
-    private static SessionFactory buildSessionFactory(Class clazz) {
-        return new Configuration()
-                .configure()
-                .addAnnotatedClass(clazz)
-                .buildSessionFactory();
+    private static SessionFactory buildSessionFactory(Class... clazzs) {
+         Configuration config = new Configuration().configure();
+         for(Class clazz:clazzs){
+             config.addAnnotatedClass(clazz);
+         }
+         return config.buildSessionFactory();
     }
 }
