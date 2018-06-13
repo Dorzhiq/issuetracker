@@ -14,5 +14,6 @@ public class Path {
         public final static String ISSUES_ALL = "/velocity/issue/all.vm";
         public final static String ISSUE_BY_ID = "/velocity/issue/issueById.vm"; //написать issueById.vm
         public final static String CREATE_ISSUE = "/velocity/issue/create.vm";
+        public final static String LOGIN = "/velocity/login/login.vm";
     }
 }

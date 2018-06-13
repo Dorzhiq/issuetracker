@@ -53,4 +53,10 @@ public class IssueController {
         HashMap<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, Path.Template.CREATE_ISSUE);
     };
+
+    public static Route deleteIssue = (Request request, Response response) -> {
+        String id = request.params(":issueId");
+        issueDao.deleteIssue(id);
+        return dataToJson("Issue with id " + id + " is deleted!");
+    };
 }

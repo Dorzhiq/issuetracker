@@ -10,6 +10,7 @@ import spark.template.velocity.*;
 
 import java.util.Map;
 
+import static com.axmor.util.RequestUtil.getSessionCurrentUser;
 import static com.axmor.util.RequestUtil.getSessionLocale;
 
 public class ViewUtil {
@@ -21,6 +22,7 @@ public class ViewUtil {
 
     public static String render(Request request, Map<String, Object> model, String templatePath) {
         model.put("msg", new MessageBundle(getSessionLocale(request)));
+        model.put("currentUser", getSessionCurrentUser(request));
         model.put("WebPath", Path.Web.class); //Access application URLs from templates
         return strictVelocityEngine().render(new ModelAndView(model, templatePath));
     }

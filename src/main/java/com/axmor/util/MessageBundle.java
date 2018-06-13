@@ -1,5 +1,6 @@
 package com.axmor.util;
 
+import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public class MessageBundle {
@@ -11,5 +12,8 @@ public class MessageBundle {
     }
     public String get(String message) {
         return messages.getString(message);
+    }
+    public final String get(final String key, final Object... args) {
+        return MessageFormat.format(get(key), args);
     }
 }
