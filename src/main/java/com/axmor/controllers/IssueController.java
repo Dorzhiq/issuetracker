@@ -30,9 +30,11 @@ public class IssueController {
 
     public static Route fetchIssueById = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
-        HashMap<String, Object> model = new HashMap<>();
-        model.put("issueById", issueDao.getById(request.params(":issueId")));
-        return ViewUtil.render(request, model, Path.Template.ISSUE_BY_ID);
+        if (issueDao.getById(request.params(":issueId"))!=null) {
+            HashMap<String, Object> model = new HashMap<>();
+            model.put("issueById", issueDao.getById(request.params(":issueId")));
+            return ViewUtil.render(request, model, Path.Template.ISSUE_BY_ID);
+        } else return ViewUtil.notAcceptable.handle(request, response);
     };
 
     public static Route putIssue = (Request request, Response response) -> {
@@ -46,8 +48,9 @@ public class IssueController {
     public static Route postIssue = (Request request, Response response) -> {
         String name = parseJson(request.body(), "name");
         String author = parseJson(request.body(), "author");
+        String description = parseJson(request.body(), "description");
         String status = parseJson(request.body(), "status");
-        issueDao.postIssue(name, author, status);
+        issueDao.postIssue(name, author, description, status);
         return dataToJson("New issue " + name + " is added!");
     };
 

@@ -1,9 +1,10 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-    <h1>Cteate issue</h1>
+    <h1>Create issue</h1>
     <form id="my-form" onsubmit="processForm(); return false;">
         <input type="text"  id="name" placeholder="Name" />
         <input type="text"  id="author" placeholder="Author" />
+        <input type="text"  id="descrition" placeholder="Description" />
         <input type="text"  id="status" placeholder="Status" />
         <button type="submit">Submit</button>
     </form>
@@ -14,7 +15,7 @@
                 url: '/issues/add/',
                 type: 'post',
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify({name : $('#name').val(), author : $('#author').val(), status : $('#status').val()}),
+                data: JSON.stringify({name : $('#name').val(), author : $('#author').val(), status : $('#status').val(), description : $('#descrition').val()}),
                 success: function(data, textStatus, jQxhr) {
                     alert(data);
                 },

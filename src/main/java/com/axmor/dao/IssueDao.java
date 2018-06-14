@@ -14,11 +14,7 @@ public class IssueDao {
         Session session = sessionFactory.openSession();
         List<Issue> result = (List<Issue>) session.createQuery("from Issue").list();
         session.close();
-        if (result == null) {
-            Issue issue = new Issue("a","a","a");
-            result.add(issue);
-            return result;
-        }else return result;
+        return result;
     }
     public Issue getById(String id) {
         Session session = sessionFactory.openSession();
@@ -36,10 +32,10 @@ public class IssueDao {
         session.getTransaction().commit();
         session.close();
     }
-    public void postIssue(String name, String author, String status) {
+    public void postIssue(String name, String author, String description, String status) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Issue issue = new Issue(name, author, status);
+        Issue issue = new Issue(name, author, description, status);
         session.save(issue);
         session.getTransaction().commit();
         session.close();

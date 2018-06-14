@@ -18,12 +18,19 @@ public class Issue {
     private String author;
 
     @Column
+    private String description;
+
+    @Column
     private String status;
 
+//    @Column
+//    private List<My_Comment> comments;
+
     public Issue(){}
-    public Issue(String name, String author, String status) {
+    public Issue(String name, String author, String description, String status) {
         this.name = name;
         this.author = author;
+        this.description = description;
         this.status = status;
     }
 
@@ -44,6 +51,10 @@ public class Issue {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     public String getStatus() {
         return status;

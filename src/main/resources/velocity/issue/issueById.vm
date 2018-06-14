@@ -1,6 +1,6 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-<h1>ISSUE</h1>
+<h1>$issueById.getName()</h1>
     <div>
         $issueById.getName() $issueById.getAuthor() $issueById.getStatus()
     </div>
