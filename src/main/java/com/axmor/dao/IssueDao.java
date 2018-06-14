@@ -27,7 +27,7 @@ public class IssueDao {
     public void patchIssue(String id, String author, String status) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Issue issue = issueDao.getById(id);
+        Issue issue = session.get(Issue.class, id);
         issue.setAuthor(author);
         issue.setStatus(status);
         session.update(issue);

@@ -2,37 +2,34 @@
 #@mainLayout()
 <h1>$issueById.getName()</h1>
     <div>
-        $issueById.getName() $issueById.getAuthor() $issueById.getStatus()
+        <div>Status $issueById.getStatus()</div>
+        <div>Author $issueById.getAuthor()</div>
+        <div>Description $issueById.getDescription()</div>
     </div>
-    <form id="my-form">
-        <input type="text" id="first-name" name="first-name" placeholder="First Name" />
-        <input type="text" id="last-name" name="last-name" placeholder="Last Name" />
+    <form id="my-form" onsubmit="processForm(); return false;">
+        <h2>Edit</h2>
+        <input type="text" value="$issueById.getIssueId()" id="issueId" hidden/>
+        <input type="text" value="$issueById.getAuthor()" id="author" placeholder="Author" />
+        <input type="text" value="$issueById.getStatus()" id="status" placeholder="Status" />
 
         <button type="submit">Submit</button>
     </form>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
-        (function($){
-            function processForm( e ){
-                $.ajax({
-                    url: '/issue/:issueId?author',
-                    dataType: 'text',
-                    type: 'post',
-                    contentType: 'application/x-www-form-urlencoded',
-                    data: $(this).serialize(),
-                    success: function( data, textStatus, jQxhr ){
-                        $('#response pre').html( data );
-                    },
-                    error: function( jqXhr, textStatus, errorThrown ){
-                        console.log( errorThrown );
-                    }
-                });
-
-                e.preventDefault();
-            }
-
-            $('#my-form').submit( processForm );
-        })(jQuery);
+        function processForm() {
+            $.ajax({
+                url: '/issue/'+ $('#issueId').val() +'/',
+                type: 'put',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({author : $('#author').val(), status : $('#status').val()}),
+                success: function(data, textStatus, jQxhr) {
+                    alert(data);
+                },
+                error: function(jqXhr, textStatus, errorThrown) {
+                    alert("error");
+                }
+            });
+        }
     </script>
 #end

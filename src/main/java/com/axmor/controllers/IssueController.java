@@ -13,6 +13,7 @@ import java.util.Set;
 
 import static com.axmor.Main.issueDao;
 import static com.axmor.util.JsonUtil.dataToJson;
+import static com.axmor.util.JsonUtil.parseJson;
 import static com.axmor.util.RequestUtil.clientAcceptsHtml;
 import static com.axmor.util.RequestUtil.clientAcceptsJson;
 
@@ -42,10 +43,10 @@ public class IssueController {
 
     public static Route putIssue = (Request request, Response response) -> {
         String id = request.params(":issueId");
-        String author = request.queryParams("author");
-        String status = request.queryParams("status");
+        String author = parseJson(request.body(), "author");
+        String status = parseJson(request.body(), "status");
         issueDao.patchIssue(id, author, status);
-        return dataToJson("Issue with id " + id + "is updated!");
+        return dataToJson("Issue with id " + id + " is updated!");
     };
 
     public static Route postIssue = (Request request, Response response) -> {

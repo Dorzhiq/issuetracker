@@ -17,4 +17,13 @@ public class JsonUtil {
          throw new RuntimeException("IOException while mapping object (" + data + ") to JSON");
         }
     }
+    public static String parseJson(String data, String fieldName) {
+        try {
+            ObjectMapper om = new ObjectMapper();
+            JsonNode jsonNode = om.readTree(data);
+            return jsonNode.path(fieldName).asText();
+        } catch (IOException e) {
+            throw new RuntimeException("IOException while parsing Json (" + data + ") to String");
+        }
+    }
 }
