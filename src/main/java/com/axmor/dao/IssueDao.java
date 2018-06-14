@@ -1,9 +1,11 @@
 package com.axmor.dao;
 
+import com.axmor.issue.Comment;
 import com.axmor.issue.Issue;
 import org.hibernate.Session;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.axmor.Main.issueDao;
 import static com.axmor.Main.sessionFactory;
@@ -32,10 +34,10 @@ public class IssueDao {
         session.getTransaction().commit();
         session.close();
     }
-    public void postIssue(String name, String author, String description, String status) {
+    public void postIssue(String name, String author, String description, String status, Set<Comment> comments) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Issue issue = new Issue(name, author, description, status);
+        Issue issue = new Issue(name, author, description, status, comments);
         session.save(issue);
         session.getTransaction().commit();
         session.close();

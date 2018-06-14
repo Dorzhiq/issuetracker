@@ -1,6 +1,8 @@
 package com.axmor.issue;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -23,15 +25,18 @@ public class Issue {
     @Column
     private String status;
 
-//    @Column
-//    private List<My_Comment> comments;
+    @ElementCollection(targetClass = Comment.class)
+    @CollectionTable(name = "comment", joinColumns = @JoinColumn(name = "author"))
+    @Column
+    private Set<Comment> comments = new HashSet<>();
 
     public Issue(){}
-    public Issue(String name, String author, String description, String status) {
+    public Issue(String name, String author, String description, String status, Set<Comment> comments) {
         this.name = name;
         this.author = author;
         this.description = description;
         this.status = status;
+        this.comments = comments;
     }
 
     public String getIssueId() { return issueId; }
@@ -63,4 +68,8 @@ public class Issue {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public Set<Comment> getComments() { return comments; }
+
+    public void setComments(Set<Comment> comments) { this.comments = comments; }
 }
