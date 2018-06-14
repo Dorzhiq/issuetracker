@@ -29,10 +29,11 @@ public class Main {
         put(Path.Web.PUT_ISSUE, IssueController.putIssue);
         post(Path.Web.POST_ISSUE, IssueController.postIssue);
         get(Path.Web.CREATE_ISSUE, IssueController.fetchCreate);
-        delete(Path.Web.DELETE_ISSUE, IssueController.deleteIssue);
+//        delete(Path.Web.DELETE_ISSUE, IssueController.deleteIssue);
 
         get(Path.Web.LOGIN, LoginController.serveLoginPage);
-        post(Path.Web.LOGOUT, LoginController.handleLoginPost);
+        post(Path.Web.LOGIN, LoginController.handleLoginPost);
+        post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
     }
     private static SessionFactory buildSessionFactory(Class... clazzs) {
          Configuration config = new Configuration().configure();

@@ -44,13 +44,13 @@ public class IssueDao {
         session.getTransaction().commit();
         session.close();
     }
-    public void deleteIssue(String id) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        Issue issue = session.get(Issue.class, id);
-        session.delete(issue);
-        session.getTransaction().commit();
-        session.close();
-    }
+//    public void deleteIssue(String id) {
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//        Issue issue = session.get(Issue.class, id);
+//        session.delete(issue);
+//        session.getTransaction().commit();
+//        session.close();
+//    }
 
 }

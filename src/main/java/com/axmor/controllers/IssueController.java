@@ -16,6 +16,7 @@ import static com.axmor.util.RequestUtil.clientAcceptsJson;
 public class IssueController {
 
     public static Route fetchAllIssues = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         if (clientAcceptsHtml(request)){
             HashMap<String, Object> model = new HashMap<>();
             model.put("issues", issueDao.getAllIssues());
@@ -28,6 +29,7 @@ public class IssueController {
     };
 
     public static Route fetchIssueById = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         HashMap<String, Object> model = new HashMap<>();
         model.put("issueById", issueDao.getById(request.params(":issueId")));
         return ViewUtil.render(request, model, Path.Template.ISSUE_BY_ID);
@@ -50,13 +52,14 @@ public class IssueController {
     };
 
     public static Route fetchCreate = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         HashMap<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, Path.Template.CREATE_ISSUE);
     };
 
-    public static Route deleteIssue = (Request request, Response response) -> {
-        String id = request.params(":issueId");
-        issueDao.deleteIssue(id);
-        return dataToJson("Issue with id " + id + " is deleted!");
-    };
+//    public static Route deleteIssue = (Request request, Response response) -> {
+//        String id = request.params(":issueId");
+//        issueDao.deleteIssue(id);
+//        return dataToJson("Issue with id " + id + " is deleted!");
+//    };
 }
