@@ -4,6 +4,7 @@ import com.axmor.issue.Comment;
 import com.axmor.issue.Issue;
 import org.hibernate.Session;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,13 +35,33 @@ public class IssueDao {
         session.getTransaction().commit();
         session.close();
     }
-    public void postIssue(String name, String author, String description, String status, Set<Comment> comments) {
+    public void postIssue(String name, String author, String description, String status, List<Comment> comments) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Issue issue = new Issue(name, author, description, status, comments);
         session.save(issue);
         session.getTransaction().commit();
         session.close();
+    }
+    public void postComment(long id, String author, String status, String text) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Issue issue = session.get(Issue.class, id);
+        List<Comment> comments = issue.getComments();
+        Comment comment = new Comment(status, author, text);
+        comments.add(comment);
+        issue.setComments(comments);
+        session.save(comment);
+        session.update(issue);
+        session.getTransaction().commit();
+        session.close();
+    }
+    public List<Comment> getCommentsById(long id) {
+        Session session = sessionFactory.openSession();
+        Issue issue = session.get(Issue.class, id);
+        List<Comment> result = issue.getComments();
+        session.close();
+        return result;
     }
 //    public void deleteIssue(String id) {
 //        Session session = sessionFactory.openSession();

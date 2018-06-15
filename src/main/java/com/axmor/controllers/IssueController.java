@@ -7,9 +7,7 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static com.axmor.Main.issueDao;
 import static com.axmor.util.JsonUtil.dataToJson;
@@ -54,7 +52,7 @@ public class IssueController {
         String author = parseJson(request.body(), "author");
         String description = parseJson(request.body(), "description");
         String status = parseJson(request.body(), "status");
-        Set<Comment> comments = new HashSet<>();
+        List<Comment> comments = new LinkedList<>();
         issueDao.postIssue(name, author, description, status, comments);
         return dataToJson("New issue " + name + " is added!");
     };
@@ -63,6 +61,15 @@ public class IssueController {
         LoginController.ensureUserIsLoggedIn(request, response);
         HashMap<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, Path.Template.CREATE_ISSUE);
+    };
+
+    public static Route postComment = (Request request, Response response) -> {
+        long id = Long.valueOf(request.params(":issueId"));
+        String author = parseJson(request.body(), "authorComment");
+        String status = parseJson(request.body(), "statusComment");
+        String text = parseJson(request.body(), "textComment");
+        issueDao.postComment(id, author, status, text);
+        return dataToJson("New comment" + text + " is added!");
     };
 
 //    public static Route deleteIssue = (Request request, Response response) -> {

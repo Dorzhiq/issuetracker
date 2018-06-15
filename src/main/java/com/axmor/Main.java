@@ -31,6 +31,8 @@ public class Main {
         get(Path.Web.CREATE_ISSUE, IssueController.fetchCreate);
 //        delete(Path.Web.DELETE_ISSUE, IssueController.deleteIssue);
 
+        post(Path.Web.POST_COMMENT, IssueController.postComment);
+
         get(Path.Web.LOGIN, LoginController.serveLoginPage);
         post(Path.Web.LOGIN, LoginController.handleLoginPost);
         post(Path.Web.LOGOUT, LoginController.handleLogoutPost);

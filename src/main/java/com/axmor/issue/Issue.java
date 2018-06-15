@@ -1,8 +1,7 @@
 package com.axmor.issue;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table
@@ -57,9 +56,13 @@ public class Issue {
         this.author = author;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getStatus() {
         return status;
@@ -69,7 +72,11 @@ public class Issue {
         this.status = status;
     }
 
-    public Set<Comment> getComments() { return comments; }
+    public List<Comment> getComments() {
+        return comments;
+    }
 
-    public void setComments(Set<Comment> comments) { this.comments = comments; }
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

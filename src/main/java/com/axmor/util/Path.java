@@ -10,6 +10,7 @@ public class Path {
         public static final String DELETE_ISSUE = "/issues/delete/:issueId/";
         public static final String LOGIN = "/login/";
         public static final String LOGOUT = "/logout/";
+        public static final String POST_COMMENT = "/issue/:issueId/comments/";
 
         public static String getLOGIN() {
             return LOGIN;

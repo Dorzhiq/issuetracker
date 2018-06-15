@@ -7,7 +7,7 @@
     <div>
         #foreach($issue in $issues)
             <div>
-                <a href="http://localhost:8080/task/$issue.getIssueId()/"><li>$issue.getName()</a> $issue.getStatus()
+                <a href="http://localhost:8080/task/$issue.getIssueId()/">$issue.getName()</a> $issue.getStatus()
 ##                <form id="my-form" onsubmit="processForm(); return false;">
 ##                    <button type="submit">Delete</button>
 ##                </form>
