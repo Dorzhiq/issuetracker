@@ -5,6 +5,8 @@
 #* @vtlvariable name="issue" type="com.axmor.issue.Issue" *#
 #* @vtlvariable name="issueById" type="com.axmor.issue.Issue" *#
 
+#* @vtlvariable name="users" type="java.lang.Iterable<com.axmor.user.User>" *#
+
 #* @vtlvariable name="comments" type="java.lang.Iterable<com.axmor.issue.Comment>" *#
 #* @vtlvariable name="comment" type="com.axmor.issue.Comment" *#
 

@@ -1,0 +1,5 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<h1>$msg.get("INDEX_HEADING")</h1>
+    <h2><a href="http://localhost:8080/issues/">$msg.get("INDEX_CURRENT")</a></h2>
+#end

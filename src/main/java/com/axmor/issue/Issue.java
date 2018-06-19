@@ -79,4 +79,8 @@ public class Issue {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    public void setIssueId(long issueId) {
+        this.issueId = issueId;
+    }
 }

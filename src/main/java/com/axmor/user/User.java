@@ -1,9 +1,20 @@
 package com.axmor.user;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class User {
+    @Id
+    @Column
     private String username;
+
+    @Column
     private String salt;
+
+    @Column
     private String hashedPassword;
+
     public User(){
 
     }

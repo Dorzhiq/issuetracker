@@ -8,7 +8,7 @@
         #foreach($issue in $issues)
             <div>
                 <a href="http://localhost:8080/task/$issue.getIssueId()/">$issue.getName()</a> $issue.getStatus()
-##                <form id="my-form" onsubmit="processForm(); return false;">
+##                <form id="my-form" onsubmit="deleteForm(); return false;">
 ##                    <button type="submit">Delete</button>
 ##                </form>
             </div>
@@ -16,12 +16,11 @@
     </div>
 ##    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 ##    <script>
-##        function processForm() {
+##        function deleteForm() {
 ##            $.ajax({
 ##                url: '/issues/delete/'+ $('#issueId').val() +'/',
 ##                type: 'delete',
 ##                contentType: 'application/json; charset=utf-8',
-##                data: JSON.stringify({isssueId : $('#issueId').val()}),
 ##                success: function(data, textStatus, jQxhr) {
 ##                    alert(data);
 ##                },

@@ -73,7 +73,7 @@ public class IssueController {
     };
 
 //    public static Route deleteIssue = (Request request, Response response) -> {
-//        String id = request.params(":issueId");
+//        long id = Long.valueOf(request.params(":issueId"));
 //        issueDao.deleteIssue(id);
 //        return dataToJson("Issue with id " + id + " is deleted!");
 //    };

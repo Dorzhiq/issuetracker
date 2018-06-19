@@ -1,16 +1,17 @@
 package com.axmor;
 
 
+import com.axmor.controllers.IndexController;
 import com.axmor.controllers.IssueController;
 import com.axmor.controllers.LoginController;
 import com.axmor.dao.IssueDao;
 import com.axmor.dao.UserDao;
+import com.axmor.issue.Comment;
 import com.axmor.issue.Issue;
+import com.axmor.user.User;
 import com.axmor.util.Path;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import spark.Request;
-import spark.Response;
 
 import static spark.Spark.*;
 
@@ -23,7 +24,7 @@ public class Main {
     public static SessionFactory sessionFactory = buildSessionFactory(Issue.class);
     public static void main(String[] args) {
         port(8080);
-        get("/", (Request req, Response res) -> "<html><body><h1>Hello, world!</h1></body></html>");
+        get(Path.Web.INDEX, IndexController.fetchIndexPage);
         get(Path.Web.ISSUES, IssueController.fetchAllIssues);
         get(Path.Web.ISSUE_BY_ID, IssueController.fetchIssueById);
         put(Path.Web.PUT_ISSUE, IssueController.putIssue);
