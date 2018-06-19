@@ -15,7 +15,37 @@
         <button type="submit">Submit</button>
     </form>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <form id="comment-form" onsubmit="processComment(); return false;">
+        <h2>Comments</h2>
+        <input type="text" value="" id="authorComment" placeholder="Author" />
+        <input type="text" value="" id="statusComment" placeholder="Status" />
+        <input type="text" value="" id="textComment" placeholder="Comment" />
+        <button type="submit">Submit</button>
+    </form>
+    <div>
+        #foreach($comment in $comments)
+                $comment.getStatus() $comment.getAuthor() $comment.getText()
+            #end
+    </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        function processComment() {
+            $.ajax({
+                url: '/issue/' + $('#issueId').val() + '/comments/',
+                type: 'post',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({author : $('#authorComment').val(), status : $('#statusComment').val(), text : $('#textComment')}),
+                success: function(data, textStatus, jQxhr) {
+                    alert(data);
+                },
+                error: function(jqXhr, textStatus, errorThrown) {
+                    alert("error");
+                }
+            });
+        }
+    </script>
+
     <script>
         function processForm() {
             $.ajax({

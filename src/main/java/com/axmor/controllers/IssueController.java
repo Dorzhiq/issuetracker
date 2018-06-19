@@ -32,15 +32,18 @@ public class IssueController {
 
     public static Route fetchIssueById = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
-        if (issueDao.getById(request.params(":issueId"))!=null) {
+        if (issueDao.getById(Long.valueOf(request.params(":issueId"))) != null) {
             HashMap<String, Object> model = new HashMap<>();
-            model.put("issueById", issueDao.getById(request.params(":issueId")));
+            model.put("issueById", issueDao.getById(Long.valueOf(request.params(":issueId"))));
+            model.put("comments", issueDao.getCommentsById(Long.valueOf(request.params(":issueId"))));
             return ViewUtil.render(request, model, Path.Template.ISSUE_BY_ID);
-        } else return ViewUtil.notAcceptable.handle(request, response);
+        } else {
+            return ViewUtil.notAcceptable.handle(request, response);
+        }
     };
 
     public static Route putIssue = (Request request, Response response) -> {
-        String id = request.params(":issueId");
+        long id = Long.valueOf(request.params(":issueId"));
         String author = parseJson(request.body(), "author");
         String status = parseJson(request.body(), "status");
         issueDao.patchIssue(id, author, status);

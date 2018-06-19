@@ -3,11 +3,14 @@ package com.axmor.issue;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "comment")
 public class Comment {
     @Id
-    @Column(name = "author")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long commentId;
+
+    @Column
     private String author;
 
     @Column
@@ -16,7 +19,21 @@ public class Comment {
     @Column
     private String text;
 
-    public Comment(){}
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name ="issueId")
+    private Issue issue;
+
+    public Issue getIssue() {
+        return issue;
+    }
+
+    public void setIssue(Issue issue) {
+        this.issue = issue;
+    }
+
+    public Comment() {
+
+    }
 
     public Comment(String status, String author, String text){
         this.author = author;
@@ -46,5 +63,9 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public long getCommentId() {
+        return commentId;
     }
 }

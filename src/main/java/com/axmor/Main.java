@@ -21,7 +21,7 @@ import static spark.Spark.*;
 public class Main {
     public static IssueDao issueDao = new IssueDao();
     public static UserDao userDao = new UserDao();
-    public static SessionFactory sessionFactory = buildSessionFactory(Issue.class);
+    public static SessionFactory sessionFactory = buildSessionFactory(Issue.class, Comment.class, User.class);
     public static void main(String[] args) {
         port(8080);
         get(Path.Web.INDEX, IndexController.fetchIndexPage);

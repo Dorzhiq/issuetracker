@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "issue")
 public class Issue {
 
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String issueId;
+    private long issueId;
 
     @Column
     private String name;
@@ -24,13 +24,14 @@ public class Issue {
     @Column
     private String status;
 
-    @ElementCollection(targetClass = Comment.class)
-    @CollectionTable(name = "comment", joinColumns = @JoinColumn(name = "author"))
-    @Column
-    private Set<Comment> comments = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "issue", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
 
-    public Issue(){}
-    public Issue(String name, String author, String description, String status, Set<Comment> comments) {
+    public Issue() {
+
+    }
+
+    public Issue(String name, String author, String description, String status, List<Comment> comments) {
         this.name = name;
         this.author = author;
         this.description = description;
@@ -38,7 +39,9 @@ public class Issue {
         this.comments = comments;
     }
 
-    public String getIssueId() { return issueId; }
+    public long getIssueId() {
+        return issueId;
+    }
 
     public String getName() {
         return name;

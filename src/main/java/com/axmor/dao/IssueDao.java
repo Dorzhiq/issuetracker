@@ -16,12 +16,13 @@ public class IssueDao {
         session.close();
         return result;
     }
-    public Issue getById(String id) {
+
+    public Issue getById(long id) {
         Session session = sessionFactory.openSession();
         return session.get(Issue.class, id);
 
     }
-    public void patchIssue(String id, String author, String status) {
+    public void patchIssue(long id, String author, String status) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Issue issue = session.get(Issue.class, id);
